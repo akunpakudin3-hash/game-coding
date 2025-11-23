@@ -7,7 +7,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300;400;600&family=Nunito:wght@400;700&display=swap" rel="stylesheet">
     
-    <!-- Blockly Scripts (Versi Stabil) -->
+    <!-- Blockly Scripts -->
     <script src="https://unpkg.com/blockly@10.4.3/blockly_compressed.js"></script>
     <script src="https://unpkg.com/blockly@10.4.3/blocks_compressed.js"></script>
     <script src="https://unpkg.com/blockly@10.4.3/javascript_compressed.js"></script>
@@ -91,23 +91,20 @@
         </div>
     </div>
 
-    <!-- PDF TEMPLATE (Hidden, will be cloned and shown for capture) -->
+    <!-- PDF TEMPLATE (Hidden) -->
     <div id="pdf-template-container">
         <div id="pdf-content" style="padding: 20px 40px; background: white; font-family: sans-serif; max-width: 800px; margin: 0 auto; border: none;">
             
-            <!-- Header PDF -->
             <div style="text-align: center; border-bottom: 4px solid #4f46e5; padding-bottom: 15px; margin-bottom: 20px;">
                 <h1 style="color: #1e293b; font-size: 28px; font-weight: bold; margin: 0; line-height: 1.2;">LAPORAN MISI AKHIR</h1>
                 <p style="color: #64748b; font-size: 14px; margin-top: 5px;">Akademi Koding Nusantara</p>
             </div>
 
-            <!-- Info Siswa -->
             <table style="width: 100%; border-collapse: collapse; margin-bottom: 25px;">
                 <tr>
                     <td style="width: 60%; vertical-align: top;">
                         <p style="color: #64748b; font-size: 10px; font-weight: bold; text-transform: uppercase;">NAMA AGEN</p>
                         <p style="font-size: 18px; font-weight: bold; margin: 0 0 15px 0;" id="pdf-name-val">-</p>
-                        
                         <p style="color: #64748b; font-size: 10px; font-weight: bold; text-transform: uppercase;">KELAS</p>
                         <p style="font-size: 18px; font-weight: bold; margin: 0;" id="pdf-class-val">-</p>
                     </td>
@@ -120,51 +117,21 @@
                 </tr>
             </table>
 
-            <!-- Tabel Jawaban -->
-            <h3 style="font-size: 14px; font-weight: bold; border-bottom: 1px solid #cbd5e1; padding-bottom: 8px; margin-bottom: 15px; color: #334155;">DETAIL JAWABAN MISI</h3>
-            <table style="width: 100%; border-collapse: collapse; font-size: 12px; margin-bottom: 25px;">
+            <h3 style="font-size: 14px; font-weight: bold; border-bottom: 1px solid #cbd5e1; padding-bottom: 8px; margin-bottom: 15px; color: #334155;">DETAIL JAWABAN MISI (1-10)</h3>
+            <table style="width: 100%; border-collapse: collapse; font-size: 12px; margin-bottom: 25px;" id="pdf-table-body">
                 <tr style="background: #f1f5f9; text-align: left;">
-                    <th style="padding: 10px; border-bottom: 2px solid #e2e8f0;">Misi</th>
-                    <th style="padding: 10px; border-bottom: 2px solid #e2e8f0;">Jawaban Anda</th>
-                    <th style="padding: 10px; border-bottom: 2px solid #e2e8f0;">Status</th>
+                    <th style="padding: 8px; border-bottom: 2px solid #e2e8f0;">No.</th>
+                    <th style="padding: 8px; border-bottom: 2px solid #e2e8f0;">Misi</th>
+                    <th style="padding: 8px; border-bottom: 2px solid #e2e8f0;">Jawaban</th>
+                    <th style="padding: 8px; border-bottom: 2px solid #e2e8f0;">Status</th>
                 </tr>
-                <tr>
-                    <td style="padding: 10px; border-bottom: 1px solid #e2e8f0;">1. Misteri Dompet</td>
-                    <td style="padding: 10px; border-bottom: 1px solid #e2e8f0; font-family: monospace;" id="pdf-ans-1-val">-</td>
-                    <td style="padding: 10px; border-bottom: 1px solid #e2e8f0; font-weight: bold;" id="pdf-stat-1-val">-</td>
-                </tr>
-                <tr>
-                    <td style="padding: 10px; border-bottom: 1px solid #e2e8f0;">2. Tiket Wahana</td>
-                    <td style="padding: 10px; border-bottom: 1px solid #e2e8f0; font-family: monospace;" id="pdf-ans-2-val">-</td>
-                    <td style="padding: 10px; border-bottom: 1px solid #e2e8f0; font-weight: bold;" id="pdf-stat-2-val">-</td>
-                </tr>
-                <tr>
-                    <td style="padding: 10px; border-bottom: 1px solid #e2e8f0;">3. Alarm Pagi</td>
-                    <td style="padding: 10px; border-bottom: 1px solid #e2e8f0; font-family: monospace;" id="pdf-ans-3-val">-</td>
-                    <td style="padding: 10px; border-bottom: 1px solid #e2e8f0; font-weight: bold;" id="pdf-stat-3-val">-</td>
-                </tr>
-                <tr>
-                    <td style="padding: 10px; border-bottom: 1px solid #e2e8f0;">4. Kode Jebakan</td>
-                    <td style="padding: 10px; border-bottom: 1px solid #e2e8f0; font-family: monospace;" id="pdf-ans-4-val">-</td>
-                    <td style="padding: 10px; border-bottom: 1px solid #e2e8f0; font-weight: bold;" id="pdf-stat-4-val">-</td>
-                </tr>
-                <tr>
-                    <td style="padding: 10px; border-bottom: 1px solid #e2e8f0;">5. Projek Akhir</td>
-                    <td style="padding: 10px; border-bottom: 1px solid #e2e8f0; font-family: monospace;" id="pdf-ans-5-val">Selesai</td>
-                    <td style="padding: 10px; border-bottom: 1px solid #e2e8f0; font-weight: bold;" id="pdf-stat-5-val">-</td>
-                </tr>
+                <!-- Rows akan diisi via JS -->
             </table>
 
-            <!-- Kode Program -->
-            <h3 style="font-size: 14px; font-weight: bold; border-bottom: 1px solid #cbd5e1; padding-bottom: 8px; margin-bottom: 15px; color: #334155;">KODE PROJEK (Convert to Text)</h3>
-            <div style="background: #1e293b; color: #a5f3fc; padding: 15px; border-radius: 8px; font-family: monospace; font-size: 11px; white-space: pre-wrap; line-height: 1.5; min-height: 100px;" id="pdf-code-val">
-                (Kode belum dibuat)
-            </div>
+            <h3 style="font-size: 14px; font-weight: bold; border-bottom: 1px solid #cbd5e1; padding-bottom: 8px; margin-bottom: 15px; color: #334155;">KODE PROJEK AKHIR</h3>
+            <div style="background: #1e293b; color: #a5f3fc; padding: 15px; border-radius: 8px; font-family: monospace; font-size: 11px; white-space: pre-wrap; line-height: 1.5; min-height: 100px;" id="pdf-code-val"></div>
 
-            <!-- Footer Validasi -->
             <div style="margin-top: 40px; text-align: right;">
-                <p style="font-size: 12px; color: #64748b; margin-bottom: 40px;">Divalidasi Secara Otomatis Oleh Sistem,</p>
-                <div style="border-bottom: 1px solid #334155; width: 180px; display: inline-block;"></div>
                 <p style="font-size: 12px; font-weight: bold; margin-top: 5px;">Server Akademi Koding</p>
                 <p style="font-size: 10px; color: #94a3b8;" id="pdf-date-val">Tanggal: -</p>
             </div>
@@ -206,124 +173,125 @@
             <!-- TAB SOAL -->
             <div id="tab-soal" class="w-full lg:w-5/12 space-y-6 tab-content active">
                 
-                <!-- MISI 1 -->
-                <div class="bg-white p-5 rounded-2xl shadow-sm border-l-4 border-pink-500 task-card">
-                    <div class="flex justify-between items-center mb-2">
-                        <h3 class="font-bold text-slate-800">💰 Misi 1: Dompet</h3>
-                        <span class="text-xs bg-pink-100 text-pink-700 px-2 py-1 rounded font-bold">20 XP</span>
+                <!-- SOAL 1-3: VARIABEL & MATEMATIKA -->
+                <div class="space-y-6">
+                    <div class="flex items-center gap-2 mb-2"><span class="bg-blue-100 text-blue-700 px-2 py-1 rounded text-xs font-bold">BAGIAN 1: VARIABEL</span></div>
+                    
+                    <!-- Misi 1 -->
+                    <div class="bg-white p-5 rounded-xl shadow-sm border-l-4 border-blue-500 task-card">
+                        <div class="flex justify-between mb-2"><h3 class="font-bold text-slate-800">Misi 1: Uang Saku</h3><span class="text-xs font-bold text-slate-400">8 Poin</span></div>
+                        <div class="bg-slate-50 p-2 text-xs font-mono mb-2">Uang = 50000; Kurang 15000; Tambah 20000;</div>
+                        <div class="flex gap-2"><input type="number" id="ans-1" class="border p-1 w-full rounded font-bold" placeholder="?"><button onclick="checkAnswer(1, '55000')" id="btn-1" class="bg-blue-500 text-white px-3 rounded text-xs font-bold">Cek</button></div><p id="feed-1" class="text-xs font-bold mt-1"></p>
                     </div>
-                    <div class="bg-slate-50 p-3 rounded-lg text-sm font-mono text-slate-600 mb-3">
-                        <p>Set 'Uang' = 50000</p>
-                        <p>Kurangi 15000 (Jajan)</p>
-                        <p>Tambah 20000 (Sangu)</p>
+
+                    <!-- Misi 2 -->
+                    <div class="bg-white p-5 rounded-xl shadow-sm border-l-4 border-blue-500 task-card">
+                        <div class="flex justify-between mb-2"><h3 class="font-bold text-slate-800">Misi 2: Hitung Umur</h3><span class="text-xs font-bold text-slate-400">8 Poin</span></div>
+                        <div class="bg-slate-50 p-2 text-xs font-mono mb-2">TahunLahir = 2010; TahunSekarang = 2025; Umur = ?</div>
+                        <div class="flex gap-2"><input type="number" id="ans-2" class="border p-1 w-full rounded font-bold" placeholder="?"><button onclick="checkAnswer(2, '15')" id="btn-2" class="bg-blue-500 text-white px-3 rounded text-xs font-bold">Cek</button></div><p id="feed-2" class="text-xs font-bold mt-1"></p>
                     </div>
-                    <div class="flex gap-2">
-                        <input type="number" id="ans-1" class="border-2 border-slate-200 rounded-lg px-3 py-2 w-full font-bold" placeholder="Sisa Uang?">
-                        <button id="btn-1" onclick="checkAnswer(1, '55000')" class="bg-pink-500 text-white px-4 rounded-lg font-bold text-sm">Cek</button>
-                    </div>
-                    <p id="feed-1" class="text-xs font-bold mt-2 min-h-[1.5em]"></p>
                 </div>
 
-                <!-- MISI 2 -->
-                <div class="bg-white p-5 rounded-2xl shadow-sm border-l-4 border-cyan-500 task-card">
-                    <div class="flex justify-between items-center mb-2">
-                        <h3 class="font-bold text-slate-800">🎢 Misi 2: Wahana</h3>
-                        <span class="text-xs bg-cyan-100 text-cyan-700 px-2 py-1 rounded font-bold">20 XP</span>
+                <!-- SOAL 3-5: LOGIKA IF-ELSE -->
+                <div class="space-y-6">
+                    <div class="flex items-center gap-2 mb-2 mt-6"><span class="bg-purple-100 text-purple-700 px-2 py-1 rounded text-xs font-bold">BAGIAN 2: LOGIKA</span></div>
+
+                    <!-- Misi 3 -->
+                    <div class="bg-white p-5 rounded-xl shadow-sm border-l-4 border-purple-500 task-card">
+                        <div class="flex justify-between mb-2"><h3 class="font-bold text-slate-800">Misi 3: Tiket Masuk</h3><span class="text-xs font-bold text-slate-400">8 Poin</span></div>
+                        <div class="bg-slate-50 p-2 text-xs font-mono mb-2">Tinggi = 145; Syarat >= 150? (YA/TIDAK)</div>
+                        <div class="flex gap-2"><select id="ans-3" class="border p-1 w-full rounded text-sm"><option>YA</option><option>TIDAK</option></select><button onclick="checkAnswer(3, 'TIDAK')" id="btn-3" class="bg-purple-500 text-white px-3 rounded text-xs font-bold">Cek</button></div><p id="feed-3" class="text-xs font-bold mt-1"></p>
                     </div>
-                    <div class="bg-slate-50 p-3 rounded-lg text-sm font-mono text-slate-600 mb-3">
-                        <p>Tinggi = 145. Syarat >= 150.</p>
-                        <p>Jika ya: "BOLEH". Jika tidak: "DILARANG".</p>
+
+                    <!-- Misi 4 -->
+                    <div class="bg-white p-5 rounded-xl shadow-sm border-l-4 border-purple-500 task-card">
+                        <div class="flex justify-between mb-2"><h3 class="font-bold text-slate-800">Misi 4: Nilai Ujian</h3><span class="text-xs font-bold text-slate-400">8 Poin</span></div>
+                        <div class="bg-slate-50 p-2 text-xs font-mono mb-2">Nilai = 75; Jika > 80 "A", Jika tidak "B". Output?</div>
+                        <div class="flex gap-2"><input type="text" id="ans-4" class="border p-1 w-full rounded font-bold" placeholder="?"><button onclick="checkAnswer(4, 'B')" id="btn-4" class="bg-purple-500 text-white px-3 rounded text-xs font-bold">Cek</button></div><p id="feed-4" class="text-xs font-bold mt-1"></p>
                     </div>
-                    <div class="flex gap-2">
-                        <select id="ans-2" class="border-2 border-slate-200 rounded-lg px-3 py-2 w-full bg-white font-bold text-sm">
-                            <option value="">Pilih...</option>
-                            <option value="BOLEH">BOLEH</option>
-                            <option value="DILARANG">DILARANG</option>
-                        </select>
-                        <button id="btn-2" onclick="checkAnswer(2, 'DILARANG')" class="bg-cyan-500 text-white px-4 rounded-lg font-bold text-sm">Cek</button>
+
+                    <!-- Misi 5 -->
+                    <div class="bg-white p-5 rounded-xl shadow-sm border-l-4 border-purple-500 task-card">
+                        <div class="flex justify-between mb-2"><h3 class="font-bold text-slate-800">Misi 5: Lampu Merah</h3><span class="text-xs font-bold text-slate-400">8 Poin</span></div>
+                        <div class="bg-slate-50 p-2 text-xs font-mono mb-2">Warna = "Hijau"; Jika "Merah" STOP, Lainnya JALAN.</div>
+                        <div class="flex gap-2"><input type="text" id="ans-5" class="border p-1 w-full rounded font-bold" placeholder="?"><button onclick="checkAnswer(5, 'JALAN')" id="btn-5" class="bg-purple-500 text-white px-3 rounded text-xs font-bold">Cek</button></div><p id="feed-5" class="text-xs font-bold mt-1"></p>
                     </div>
-                    <p id="feed-2" class="text-xs font-bold mt-2 min-h-[1.5em]"></p>
                 </div>
 
-                <!-- MISI 3 -->
-                <div class="bg-white p-5 rounded-2xl shadow-sm border-l-4 border-emerald-500 task-card">
-                    <div class="flex justify-between items-center mb-2">
-                        <h3 class="font-bold text-slate-800">⏰ Misi 3: Loop</h3>
-                        <span class="text-xs bg-emerald-100 text-emerald-700 px-2 py-1 rounded font-bold">20 XP</span>
+                <!-- SOAL 6-8: LOOPING -->
+                <div class="space-y-6">
+                    <div class="flex items-center gap-2 mb-2 mt-6"><span class="bg-green-100 text-green-700 px-2 py-1 rounded text-xs font-bold">BAGIAN 3: PERULANGAN</span></div>
+
+                    <!-- Misi 6 -->
+                    <div class="bg-white p-5 rounded-xl shadow-sm border-l-4 border-green-500 task-card">
+                        <div class="flex justify-between mb-2"><h3 class="font-bold text-slate-800">Misi 6: Lari Pagi</h3><span class="text-xs font-bold text-slate-400">8 Poin</span></div>
+                        <div class="bg-slate-50 p-2 text-xs font-mono mb-2">Ulangi 5 kali: Cetak "Lari". Jumlah kata "Lari"?</div>
+                        <div class="flex gap-2"><input type="number" id="ans-6" class="border p-1 w-full rounded font-bold" placeholder="?"><button onclick="checkAnswer(6, '5')" id="btn-6" class="bg-green-500 text-white px-3 rounded text-xs font-bold">Cek</button></div><p id="feed-6" class="text-xs font-bold mt-1"></p>
                     </div>
-                    <div class="bg-slate-50 p-3 rounded-lg text-sm font-mono text-slate-600 mb-3">
-                        <p>Ulangi 3 kali:</p>
-                        <p>Cetak "A"</p>
-                        <p>Cetak "B"</p>
+
+                    <!-- Misi 7 -->
+                    <div class="bg-white p-5 rounded-xl shadow-sm border-l-4 border-green-500 task-card">
+                        <div class="flex justify-between mb-2"><h3 class="font-bold text-slate-800">Misi 7: Pola Angka</h3><span class="text-xs font-bold text-slate-400">8 Poin</span></div>
+                        <div class="bg-slate-50 p-2 text-xs font-mono mb-2">X = 0; Ulangi 3 kali: X = X + 2. Nilai akhir X?</div>
+                        <div class="flex gap-2"><input type="number" id="ans-7" class="border p-1 w-full rounded font-bold" placeholder="?"><button onclick="checkAnswer(7, '6')" id="btn-7" class="bg-green-500 text-white px-3 rounded text-xs font-bold">Cek</button></div><p id="feed-7" class="text-xs font-bold mt-1"></p>
                     </div>
-                    <div class="flex gap-2">
-                        <input type="number" id="ans-3" class="border-2 border-slate-200 rounded-lg px-3 py-2 w-full font-bold" placeholder="Total Huruf?">
-                        <button id="btn-3" onclick="checkAnswer(3, '6')" class="bg-emerald-500 text-white px-4 rounded-lg font-bold text-sm">Cek</button>
+
+                    <!-- Misi 8 -->
+                    <div class="bg-white p-5 rounded-xl shadow-sm border-l-4 border-green-500 task-card">
+                        <div class="flex justify-between mb-2"><h3 class="font-bold text-slate-800">Misi 8: Mundur</h3><span class="text-xs font-bold text-slate-400">8 Poin</span></div>
+                        <div class="bg-slate-50 p-2 text-xs font-mono mb-2">Hitung mundur 3 ke 1. Angka terakhir dicetak?</div>
+                        <div class="flex gap-2"><input type="number" id="ans-8" class="border p-1 w-full rounded font-bold" placeholder="?"><button onclick="checkAnswer(8, '1')" id="btn-8" class="bg-green-500 text-white px-3 rounded text-xs font-bold">Cek</button></div><p id="feed-8" class="text-xs font-bold mt-1"></p>
                     </div>
-                    <p id="feed-3" class="text-xs font-bold mt-2 min-h-[1.5em]"></p>
                 </div>
 
-                <!-- MISI 4 -->
-                <div class="bg-white p-5 rounded-2xl shadow-sm border-l-4 border-orange-500 task-card">
-                    <div class="flex justify-between items-center mb-2">
-                        <h3 class="font-bold text-slate-800">🔥 Misi 4: Jebakan</h3>
-                        <span class="text-xs bg-orange-100 text-orange-700 px-2 py-1 rounded font-bold">20 XP</span>
+                <!-- SOAL 9-10: TANTANGAN -->
+                <div class="space-y-6">
+                    <div class="flex items-center gap-2 mb-2 mt-6"><span class="bg-orange-100 text-orange-700 px-2 py-1 rounded text-xs font-bold">BAGIAN 4: TANTANGAN</span></div>
+
+                    <!-- Misi 9 -->
+                    <div class="bg-white p-5 rounded-xl shadow-sm border-l-4 border-orange-500 task-card">
+                        <div class="flex justify-between mb-2"><h3 class="font-bold text-slate-800">Misi 9: Ganjil Genap</h3><span class="text-xs font-bold text-slate-400">8 Poin</span></div>
+                        <div class="bg-slate-50 p-2 text-xs font-mono mb-2">Angka = 7; Jika (Angka % 2 == 0) "GENAP", Else "GANJIL".</div>
+                        <div class="flex gap-2"><input type="text" id="ans-9" class="border p-1 w-full rounded font-bold" placeholder="?"><button onclick="checkAnswer(9, 'GANJIL')" id="btn-9" class="bg-orange-500 text-white px-3 rounded text-xs font-bold">Cek</button></div><p id="feed-9" class="text-xs font-bold mt-1"></p>
                     </div>
-                    <div class="bg-slate-50 p-3 rounded-lg text-sm font-mono text-slate-600 mb-3">
-                        <p>Nilai = 10. Jika Nilai > 20 tambah 5.</p>
-                        <p>Lalu tambah 1.</p>
-                        <p>Cetak Nilai.</p>
+
+                    <!-- Misi 10 -->
+                    <div class="bg-white p-5 rounded-xl shadow-sm border-l-4 border-orange-500 task-card">
+                        <div class="flex justify-between mb-2"><h3 class="font-bold text-slate-800">Misi 10: Jebakan Logika</h3><span class="text-xs font-bold text-slate-400">8 Poin</span></div>
+                        <div class="bg-slate-50 p-2 text-xs font-mono mb-2">A = 10; Jika A > 5 tambah 5; Lalu tambah 2. Hasil?</div>
+                        <div class="flex gap-2"><input type="number" id="ans-10" class="border p-1 w-full rounded font-bold" placeholder="?"><button onclick="checkAnswer(10, '17')" id="btn-10" class="bg-orange-500 text-white px-3 rounded text-xs font-bold">Cek</button></div><p id="feed-10" class="text-xs font-bold mt-1"></p>
                     </div>
-                    <div class="flex gap-2">
-                        <input type="number" id="ans-4" class="border-2 border-slate-200 rounded-lg px-3 py-2 w-full font-bold" placeholder="Hasil Akhir?">
-                        <button id="btn-4" onclick="checkAnswer(4, '11')" class="bg-orange-500 text-white px-4 rounded-lg font-bold text-sm">Cek</button>
-                    </div>
-                    <p id="feed-4" class="text-xs font-bold mt-2 min-h-[1.5em]"></p>
                 </div>
 
                 <!-- PROJEK AKHIR -->
-                <div class="project-card p-6 rounded-2xl shadow-lg relative overflow-hidden">
-                    <h3 class="text-xl font-bold mb-2">🏆 PROJEK AKHIR: KASIR PINTAR</h3>
-                    <div class="bg-white/10 p-4 rounded-lg border border-white/20 mb-4 text-sm">
-                        <strong class="block mb-2 text-yellow-300">TUGAS AGEN:</strong>
-                        <p>Buatlah program kasir otomatis di <strong>Lab Kode</strong> dengan fitur:</p>
-                        <ul class="list-disc list-inside mt-2 space-y-1 text-xs text-indigo-100">
-                            <li>1. Buat Variabel <code>TotalBelanja</code>.</li>
-                            <li>2. Set nilainya (misal: 60000).</li>
-                            <li>3. Gunakan Blok <strong>Logika (If-Else)</strong>:</li>
-                            <li class="pl-4">- Jika <code>TotalBelanja</code> > 50000, Cetak "DISKON!".</li>
-                            <li class="pl-4">- Jika tidak, Cetak "NORMAL".</li>
-                            <li>4. Terakhir, Cetak nilai <code>TotalBelanja</code>.</li>
+                <div class="project-card p-6 rounded-2xl shadow-lg mt-8 mb-8">
+                    <h3 class="text-xl font-bold mb-2 text-white">🏆 FINAL PROJECT: KASIR PINTAR 2.0</h3>
+                    <div class="bg-white/10 p-4 rounded-lg border border-white/20 mb-4 text-sm text-indigo-50">
+                        <strong>INSTRUKSI:</strong>
+                        <ul class="list-disc list-inside mt-2 space-y-1 text-xs">
+                            <li>1. Buat variabel <code>Total</code> dan isi nilai (cth: 75000).</li>
+                            <li>2. Buat variabel <code>Bayar</code> (cth: 100000).</li>
+                            <li>3. Jika <code>Total</code> > 50000, diskon 10% (Kurangi Total).</li>
+                            <li>4. Hitung <code>Kembalian</code> = Bayar - Total.</li>
+                            <li>5. Cetak "Kembalian: " + nilai kembalian.</li>
                         </ul>
                     </div>
-
-                    <p class="text-xs font-bold uppercase mb-2 text-indigo-200">Checklist Penyelesaian:</p>
-                    <div class="space-y-2 text-sm bg-black/20 p-3 rounded-lg">
-                        <label class="flex items-center gap-2 cursor-pointer hover:text-yellow-300 transition">
-                            <input type="checkbox" id="check-var" class="w-4 h-4 rounded border-2 border-white bg-transparent text-indigo-600 focus:ring-0"> 
-                            <span>Saya sudah pakai Variabel</span>
-                        </label>
-                        <label class="flex items-center gap-2 cursor-pointer hover:text-yellow-300 transition">
-                            <input type="checkbox" id="check-if" class="w-4 h-4 rounded border-2 border-white bg-transparent text-indigo-600 focus:ring-0"> 
-                            <span>Saya sudah pakai If-Else</span>
-                        </label>
-                        <!-- Tambahan Logika Selesai -->
-                        <p id="project-status" class="text-center font-bold text-xs text-indigo-200 mt-2">Status: Belum Selesai</p>
+                    
+                    <div class="space-y-2 text-sm bg-black/20 p-3 rounded-lg text-white">
+                        <label class="flex items-center gap-2"><input type="checkbox" id="check-var" class="w-4 h-4"> <span>Variabel (Total, Bayar, Kembalian)</span></label>
+                        <label class="flex items-center gap-2"><input type="checkbox" id="check-if" class="w-4 h-4"> <span>Logika Diskon (If)</span></label>
+                        <label class="flex items-center gap-2"><input type="checkbox" id="check-calc" class="w-4 h-4"> <span>Hitung Kembalian</span></label>
+                        <p id="project-status" class="text-center font-bold text-xs mt-2 text-indigo-200">Status: Belum Selesai</p>
                     </div>
                 </div>
 
-                <!-- TOMBOL DOWNLOAD -->
+                <!-- SUBMIT -->
                 <div class="bg-slate-800 text-white p-5 rounded-2xl shadow-xl border-t-4 border-yellow-400 mb-20 lg:mb-0">
                     <div class="flex justify-between items-end mb-4">
-                        <div>
-                            <p class="text-slate-400 text-xs font-bold">TOTAL SKOR</p>
-                            <div class="text-4xl font-extrabold text-yellow-400" id="total-score">0</div>
-                        </div>
-                        <div class="text-right text-xs text-slate-400" id="status-text">0/5 Selesai</div>
+                        <div><p class="text-xs font-bold text-slate-400">TOTAL SKOR</p><div class="text-4xl font-extrabold text-yellow-400" id="total-score">0</div></div>
+                        <div class="text-right text-xs text-slate-400" id="status-text">0/11 Selesai</div>
                     </div>
-                    <button id="btn-download" onclick="generatePDF()" class="w-full bg-red-600 hover:bg-red-700 text-white font-bold py-3 rounded-xl shadow-lg flex items-center justify-center gap-2">
-                        📄 UNDUH LAPORAN (PDF)
-                    </button>
+                    <button id="btn-download" onclick="generatePDF()" class="w-full bg-red-600 hover:bg-red-700 text-white font-bold py-3 rounded-xl shadow-lg flex items-center justify-center gap-2">📄 UNDUH LAPORAN (PDF)</button>
                 </div>
             </div>
 
@@ -334,8 +302,8 @@
                         <div class="flex justify-between items-center p-3 border-b border-slate-100 mb-2">
                             <h3 class="font-bold text-slate-700 text-sm">🧪 Laboratorium Kode</h3>
                             <div class="flex gap-2">
-                                <button onclick="runCode()" class="bg-green-500 hover:bg-green-600 text-white text-xs font-bold py-2 px-4 rounded-lg shadow-sm">▶ JALANKAN</button>
-                                <button onclick="clearWorkspace()" class="bg-slate-100 text-slate-600 text-xs font-bold py-2 px-3 rounded-lg">🗑️</button>
+                                <button onclick="runCode()" class="bg-green-500 text-white text-xs font-bold py-2 px-4 rounded shadow-sm">▶ JALANKAN</button>
+                                <button onclick="clearWorkspace()" class="bg-slate-100 text-slate-600 text-xs font-bold py-2 px-3 rounded">🗑️</button>
                             </div>
                         </div>
                         <div id="blocklyDiv" class="blockly-editor"></div>
@@ -348,53 +316,42 @@
 
     <!-- MOBILE NAV -->
     <div id="mobile-nav" class="fixed bottom-0 left-0 w-full bg-white border-t border-slate-200 p-2 flex justify-around z-50 lg:hidden shadow-lg">
-        <button onclick="switchTab('soal')" id="nav-soal" class="flex flex-col items-center p-2 text-indigo-600 w-1/2">
-            <span class="text-2xl">📝</span><span class="text-xs font-bold">Misi</span>
-        </button>
-        <button onclick="switchTab('lab')" id="nav-lab" class="flex flex-col items-center p-2 text-slate-400 w-1/2">
-            <span class="text-2xl">🧪</span><span class="text-xs font-bold">Lab Kode</span>
-        </button>
+        <button onclick="switchTab('soal')" id="nav-soal" class="flex flex-col items-center p-2 text-indigo-600 w-1/2"><span class="text-2xl">📝</span><span class="text-xs font-bold">Misi</span></button>
+        <button onclick="switchTab('lab')" id="nav-lab" class="flex flex-col items-center p-2 text-slate-400 w-1/2"><span class="text-2xl">🧪</span><span class="text-xs font-bold">Lab</span></button>
     </div>
 
-    <!-- TOOLBOX XML -->
     <xml xmlns="https://developers.google.com/blockly/xml" id="toolbox" style="display: none">
         <category name="📦 Variabel" colour="#ec407a" custom="VARIABLE"></category>
         <category name="⚙️ Logika" colour="#5c81a6">
-          <block type="controls_if"></block>
-          <block type="logic_compare"></block>
-          <block type="logic_operation"></block>
-          <block type="logic_negate"></block>
+          <block type="controls_if"></block><block type="logic_compare"></block><block type="logic_operation"></block><block type="logic_negate"></block>
         </category>
         <category name="🔄 Loop" colour="#5ca65c">
-          <block type="controls_repeat_ext">
-            <value name="TIMES"><shadow type="math_number"><field name="NUM">3</field></shadow></value>
-          </block>
+          <block type="controls_repeat_ext"><value name="TIMES"><shadow type="math_number"><field name="NUM">3</field></shadow></value></block>
         </category>
         <category name="🧮 Matematika" colour="#5c68a6">
-          <block type="math_number"><field name="NUM">0</field></block>
-          <block type="math_arithmetic"></block>
-          <block type="math_random_int"></block>
+          <block type="math_number"><field name="NUM">0</field></block><block type="math_arithmetic"></block><block type="math_modulo"></block><block type="math_random_int"></block>
         </category>
         <category name="📝 Teks" colour="#5ca68d">
-          <block type="text"></block>
-          <block type="text_print"><value name="TEXT"><shadow type="text"><field name="TEXT">Halo</field></shadow></value></block>
-          <block type="text_join"></block>
+          <block type="text"></block><block type="text_print"><value name="TEXT"><shadow type="text"><field name="TEXT">Halo</field></shadow></value></block><block type="text_join"></block>
         </category>
     </xml>
 
     <script>
-        // 1. SETUP
         let demoWorkspace = null;
         let promptCallback = null;
+        let score = 0;
+        let answered = {};
+        const MISI_NAMES = [
+            "Uang Saku", "Hitung Umur", "Tiket Masuk", "Nilai Ujian", "Lampu Merah",
+            "Lari Pagi", "Pola Angka", "Mundur", "Ganjil Genap", "Jebakan Logika", "PROJEK AKHIR"
+        ];
 
         function init() {
             if (typeof Blockly === 'undefined') return;
-
-            Blockly.dialog.setPrompt(function(message, defaultValue, callback) {
-                promptCallback = callback;
-                document.getElementById('dialog-title').innerText = "Input";
-                document.getElementById('dialog-message').innerText = message;
-                document.getElementById('dialog-input').value = defaultValue;
+            Blockly.dialog.setPrompt((msg, def, cb) => {
+                promptCallback = cb;
+                document.getElementById('dialog-message').innerText = msg;
+                document.getElementById('dialog-input').value = def;
                 document.getElementById('custom-dialog').style.display = 'flex';
                 document.getElementById('dialog-input').focus();
             });
@@ -403,16 +360,10 @@
             demoWorkspace = Blockly.inject('blocklyDiv', {
                 media: 'https://unpkg.com/blockly@10.4.3/media/',
                 toolbox: document.getElementById('toolbox'),
-                scrollbars: true,
-                zoom: { controls: true, startScale: isMobile ? 0.9 : 0.8 },
+                scrollbars: true, zoom: { controls: true, startScale: isMobile ? 0.9 : 0.8 },
                 grid: { spacing: 25, length: 3, colour: '#ccc', snap: true }
             });
-            
             window.addEventListener('resize', () => Blockly.svgResize(demoWorkspace));
-            try {
-                const xml = '<xml><block type="text_print" x="50" y="50"><value name="TEXT"><shadow type="text"><field name="TEXT">Siap Misi!</field></shadow></value></block></xml>';
-                Blockly.Xml.domToWorkspace(Blockly.utils.xml.textToDom(xml), demoWorkspace);
-            } catch(e){}
         }
 
         function closeDialog(isOk) {
@@ -423,179 +374,139 @@
         function switchTab(tab) {
             document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
             document.getElementById(`tab-${tab}`).classList.add('active');
-            
-            // Update Nav Icons
             document.getElementById('nav-soal').classList.toggle('text-indigo-600', tab === 'soal');
             document.getElementById('nav-soal').classList.toggle('text-slate-400', tab !== 'soal');
             document.getElementById('nav-lab').classList.toggle('text-indigo-600', tab === 'lab');
             document.getElementById('nav-lab').classList.toggle('text-slate-400', tab !== 'lab');
-            
             if(tab === 'lab') setTimeout(() => Blockly.svgResize(demoWorkspace), 100);
         }
 
-        // 2. LOGIC
-        let score = 0;
-        let answered = {};
-
         function checkAnswer(id, correct) {
             if (answered[id] !== undefined) return;
-            
             const val = document.getElementById(`ans-${id}`).value.trim().toUpperCase();
             const isCorrect = val === correct;
             answered[id] = isCorrect;
             
-            // Lock UI
-            document.getElementById(`ans-${id}`).disabled = true;
-            document.getElementById(`btn-${id}`).disabled = true;
-            document.getElementById(`btn-${id}`).classList.add('opacity-50');
+            const input = document.getElementById(`ans-${id}`);
+            const btn = document.getElementById(`btn-${id}`);
+            input.disabled = true; btn.disabled = true; btn.classList.add('opacity-50');
 
             const feed = document.getElementById(`feed-${id}`);
             if (isCorrect) {
-                score += 20;
-                feed.innerHTML = "✅ BENAR! (+20 XP)";
-                feed.classList.add("text-green-600");
+                feed.innerHTML = "✅ BENAR! (+8 Poin)"; feed.classList.add("text-green-600");
             } else {
-                feed.innerHTML = "❌ SALAH";
-                feed.classList.add("text-red-500");
+                feed.innerHTML = "❌ SALAH"; feed.classList.add("text-red-500");
             }
             updateScore();
         }
 
         function updateScore() {
-            const p1 = document.getElementById('check-var').checked;
-            const p2 = document.getElementById('check-if').checked;
-            
-            // Projek dianggap selesai jika kedua checklist dicentang
-            const projectComplete = p1 && p2;
-            const bonus = projectComplete ? 20 : 0;
-            
-            // Update status projek UI
-            const projStatus = document.getElementById('project-status');
-            if (projectComplete) {
-                projStatus.innerText = "Status: SELESAI (+20 XP)";
-                projStatus.classList.remove("text-indigo-200");
-                projStatus.classList.add("text-green-400", "font-extrabold");
-            } else {
-                projStatus.innerText = "Status: Belum Selesai";
-                projStatus.classList.add("text-indigo-200");
-                projStatus.classList.remove("text-green-400", "font-extrabold");
+            // Hitung skor soal (10 soal x 8 poin = 80)
+            let soalScore = 0;
+            for(let i=1; i<=10; i++) {
+                if(answered[i]) soalScore += 8;
             }
 
-            document.getElementById('total-score').innerText = score + bonus;
+            // Hitung skor projek (20 poin)
+            const p1 = document.getElementById('check-var').checked;
+            const p2 = document.getElementById('check-if').checked;
+            const p3 = document.getElementById('check-calc').checked;
+            const projectComplete = p1 && p2 && p3;
             
-            // Hitung soal terjawab + 1 jika projek selesai
-            let solvedCount = Object.keys(answered).length;
-            if (projectComplete) solvedCount += 1;
+            const projStatus = document.getElementById('project-status');
+            if (projectComplete) {
+                projStatus.innerText = "Status: SELESAI (+20 Poin)";
+                projStatus.classList.replace("text-indigo-200", "text-green-400");
+            } else {
+                projStatus.innerText = "Status: Belum Selesai";
+                projStatus.classList.replace("text-green-400", "text-indigo-200");
+            }
+
+            const totalScore = soalScore + (projectComplete ? 20 : 0);
+            document.getElementById('total-score').innerText = totalScore;
             
-            document.getElementById('status-text').innerText = `${solvedCount}/5 Selesai`;
+            let solvedCount = Object.keys(answered).length + (projectComplete ? 1 : 0);
+            document.getElementById('status-text').innerText = `${solvedCount}/11 Selesai`;
         }
 
-        // 3. EXECUTION
         function runCode() {
-            const logs = document.getElementById('logs');
-            logs.innerHTML = "";
-            window.LoopTrap = 1000;
-            Blockly.JavaScript.INFINITE_LOOP_TRAP = 'if (--window.LoopTrap == 0) throw "Infinite loop.";\n';
-            
+            const logs = document.getElementById('logs'); logs.innerHTML = "";
+            window.LoopTrap = 1000; Blockly.JavaScript.INFINITE_LOOP_TRAP = 'if (--window.LoopTrap == 0) throw "Infinite loop.";\n';
             const oldAlert = window.alert;
-            window.alert = (msg) => {
-                logs.innerHTML += `<div>> ${msg}</div>`;
-                logs.scrollTop = logs.scrollHeight;
-            };
-
+            window.alert = (msg) => { logs.innerHTML += `<div>> ${msg}</div>`; logs.scrollTop = logs.scrollHeight; };
             try {
                 const code = Blockly.JavaScript.workspaceToCode(demoWorkspace);
                 if (!code.trim()) { logs.innerHTML = "⚠️ Blok kosong!"; return; }
-                eval(code);
-                logs.innerHTML += "<div class='opacity-50 mt-2'>--- Selesai ---</div>";
+                eval(code); logs.innerHTML += "<div class='opacity-50 mt-2'>--- Selesai ---</div>";
             } catch (e) { logs.innerHTML += `<div class='text-red-400'>Error: ${e}</div>`; }
         }
 
         function clearWorkspace() { if(confirm("Reset?")) demoWorkspace.clear(); }
 
-        // 4. PDF GENERATION (ANTI-GAGAL: INJECT TEXT + OVERLAY TOP)
         function generatePDF() {
-            if(!document.getElementById('check-var').checked || !document.getElementById('check-if').checked) { 
-                alert("⚠️ Harap selesaikan PROJEK AKHIR dan centang checklist sebelum mengumpulkan!"); 
-                return; 
+            if(!document.getElementById('check-var').checked || !document.getElementById('check-if').checked || !document.getElementById('check-calc').checked) { 
+                alert("⚠️ Selesaikan PROJEK AKHIR dulu!"); return; 
             }
 
-            const btn = document.getElementById('btn-download');
-            btn.innerHTML = "⏳ Memproses...";
-            btn.disabled = true;
+            const btn = document.getElementById('btn-download'); btn.innerHTML = "⏳ Memproses..."; btn.disabled = true;
 
-            // 1. INJECT DATA
-            const templateContainer = document.getElementById('pdf-template-container');
-            const contentToPrint = document.getElementById('pdf-content');
-
+            // INJECT DATA
             document.getElementById('pdf-name-val').innerText = document.getElementById('student-name').value || "Tanpa Nama";
             document.getElementById('pdf-class-val').innerText = document.getElementById('student-class').value || "-";
             document.getElementById('pdf-score-val').innerText = document.getElementById('total-score').innerText;
             document.getElementById('pdf-date-val').innerText = "Tanggal: " + new Date().toLocaleDateString('id-ID');
 
-            for(let i=1; i<=4; i++) {
+            const tableBody = document.getElementById('pdf-table-body');
+            // Hapus baris lama kecuali header
+            while(tableBody.rows.length > 1) { tableBody.deleteRow(1); }
+
+            // Isi 10 Soal
+            for(let i=1; i<=10; i++) {
+                const row = tableBody.insertRow();
                 const val = document.getElementById(`ans-${i}`).value || "(Kosong)";
                 const stat = answered[i] === true ? "BENAR" : (answered[i] === false ? "SALAH" : "-");
-                document.getElementById(`pdf-ans-${i}-val`).innerText = val;
-                const statEl = document.getElementById(`pdf-stat-${i}-val`);
-                statEl.innerText = stat;
-                statEl.style.color = stat === "BENAR" ? "green" : "red";
+                
+                row.insertCell(0).innerText = i;
+                row.insertCell(1).innerText = MISI_NAMES[i-1];
+                row.insertCell(2).innerText = val;
+                
+                const cellStat = row.insertCell(3);
+                cellStat.innerText = stat;
+                cellStat.style.color = stat === "BENAR" ? "green" : "red";
+                cellStat.style.fontWeight = "bold";
             }
-            
-            // Update status projek di PDF
-            const p1 = document.getElementById('check-var').checked;
-            const p2 = document.getElementById('check-if').checked;
-            const projStat = (p1 && p2) ? "BENAR" : "BELUM";
-            const projEl = document.getElementById('pdf-stat-5-val');
-            projEl.innerText = projStat;
-            projEl.style.color = projStat === "BENAR" ? "green" : "red";
+
+            // Isi Projek Akhir
+            const rowProj = tableBody.insertRow();
+            rowProj.insertCell(0).innerText = "11";
+            rowProj.insertCell(1).innerText = "PROJEK AKHIR";
+            rowProj.insertCell(2).innerText = "Selesai";
+            const cellStatProj = rowProj.insertCell(3);
+            cellStatProj.innerText = "BENAR";
+            cellStatProj.style.color = "green"; 
+            cellStatProj.style.fontWeight = "bold";
 
             try {
                 const code = Blockly.JavaScript.workspaceToCode(demoWorkspace);
                 document.getElementById('pdf-code-val').innerText = code || "// Tidak ada kode";
-            } catch(e) { document.getElementById('pdf-code-val').innerText = "// Error ambil kode"; }
+            } catch(e) { document.getElementById('pdf-code-val').innerText = "// Error"; }
 
-            // 2. BUAT OVERLAY (FIX POSISI DI ATAS)
+            // OVERLAY & PRINT
             const overlay = document.createElement('div');
-            overlay.style.position = 'fixed';
-            overlay.style.top = '0';
-            overlay.style.left = '0';
-            overlay.style.width = '100%';
-            overlay.style.height = '100%';
-            overlay.style.zIndex = '99999';
-            overlay.style.background = 'white';
-            overlay.style.display = 'flex';
-            overlay.style.justifyContent = 'center';
-            overlay.style.alignItems = 'flex-start'; // PENTING: Mulai dari atas
-            overlay.style.overflowY = 'auto';
-            overlay.style.paddingTop = '0'; // Hilangkan padding bawaan container
+            Object.assign(overlay.style, {position:'fixed', top:0, left:0, width:'100%', height:'100%', zIndex:99999, background:'white', display:'flex', justifyContent:'center', alignItems:'flex-start', overflowY:'auto', paddingTop:'0'});
             
-            const cloneContent = contentToPrint.cloneNode(true);
+            const cloneContent = document.getElementById('pdf-content').cloneNode(true);
             overlay.appendChild(cloneContent);
             document.body.appendChild(overlay);
-
-            // Force scroll ke atas sebelum capture
             window.scrollTo(0, 0);
 
-            // 3. GENERATE
-            const opt = {
-                margin: 10,
-                filename: `Laporan_${document.getElementById('student-name').value.replace(/\s+/g,'_')}.pdf`,
-                image: { type: 'jpeg', quality: 0.98 },
-                html2canvas: { scale: 2, useCORS: true, scrollY: 0 }, // Force scrollY 0
-                jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
-            };
+            const opt = { margin: 10, filename: `Laporan_${document.getElementById('student-name').value}.pdf`, image: { type: 'jpeg', quality: 0.98 }, html2canvas: { scale: 2, useCORS: true, scrollY: 0 }, jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' } };
 
             setTimeout(() => {
                 html2pdf().set(opt).from(cloneContent).save().then(() => {
-                    document.body.removeChild(overlay);
-                    btn.innerHTML = "📄 UNDUH LAPORAN (PDF)";
-                    btn.disabled = false;
+                    document.body.removeChild(overlay); btn.innerHTML = "📄 UNDUH LAPORAN (PDF)"; btn.disabled = false;
                 }).catch(err => {
-                    alert("Gagal: " + err);
-                    if(document.body.contains(overlay)) document.body.removeChild(overlay);
-                    btn.innerHTML = "📄 UNDUH LAPORAN (PDF)";
-                    btn.disabled = false;
+                    alert("Gagal: " + err); if(document.body.contains(overlay)) document.body.removeChild(overlay); btn.disabled = false;
                 });
             }, 500);
         }
@@ -604,31 +515,23 @@
             const data = {
                 name: document.getElementById('student-name').value,
                 class: document.getElementById('student-class').value,
-                score: score,
+                score: document.getElementById('total-score').innerText, // Simpan skor final
                 xml: Blockly.Xml.domToText(Blockly.Xml.workspaceToDom(demoWorkspace))
             };
             const blob = new Blob([JSON.stringify(data)], {type:'application/json'});
-            const a = document.createElement('a');
-            a.href = URL.createObjectURL(blob);
-            a.download = "Save.json";
-            a.click();
+            const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = "Save.json"; a.click();
         }
 
         function loadProgress(inp) {
-            const f = inp.files[0];
-            if(!f) return;
+            const f = inp.files[0]; if(!f) return;
             const r = new FileReader();
             r.onload = (e) => {
                 try {
                     const d = JSON.parse(e.target.result);
                     document.getElementById('student-name').value = d.name;
                     document.getElementById('student-class').value = d.class;
-                    score = d.score;
-                    if(d.xml) {
-                        demoWorkspace.clear();
-                        Blockly.Xml.domToWorkspace(Blockly.utils.xml.textToDom(d.xml), demoWorkspace);
-                    }
-                    alert("Data dimuat!");
+                    if(d.xml) { demoWorkspace.clear(); Blockly.Xml.domToWorkspace(Blockly.utils.xml.textToDom(d.xml), demoWorkspace); }
+                    alert("Data dimuat! Silakan kerjakan ulang soal untuk validasi.");
                 } catch(e) { alert("Error"); }
             }
             r.readAsText(f);
