@@ -20,7 +20,6 @@
         body { font-family: 'Nunito', sans-serif; background-color: #f0f9ff; -webkit-tap-highlight-color: transparent; padding-bottom: 80px; }
         h1, h2, h3 { font-family: 'Fredoka', sans-serif; }
         
-        /* Editor Height */
         .blockly-editor { 
             height: 65vh; 
             width: 100%; 
@@ -44,12 +43,31 @@
             color: white;
         }
 
+        /* Styles untuk TUTOR */
+        .tutor-box {
+            background-color: #fffbeb; /* Yellow-50 */
+            border: 1px solid #fcd34d; /* Yellow-300 */
+            border-radius: 8px;
+            padding: 10px;
+            margin-top: 10px;
+            font-size: 11px;
+            color: #92400e; /* Yellow-800 */
+            display: none; /* Default hidden */
+        }
+        .tutor-btn {
+            font-size: 10px;
+            text-decoration: underline;
+            color: #6366f1;
+            cursor: pointer;
+            margin-top: 5px;
+            display: inline-block;
+        }
+
         @keyframes pop { 50% { transform: scale(1.1); } }
         .pop-anim { animation: pop 0.3s ease-in-out; }
 
         html { scroll-behavior: smooth; }
 
-        /* Custom Dialog */
         #custom-dialog {
             background: rgba(15, 23, 42, 0.6);
             backdrop-filter: blur(4px);
@@ -60,12 +78,8 @@
             background: white; padding: 24px; border-radius: 16px; width: 90%; max-width: 400px;
         }
 
-        /* PDF TEMPLATE (Hidden by default) */
-        #pdf-template-container {
-            display: none;
-        }
+        #pdf-template-container { display: none; }
 
-        /* Mobile Tabs */
         .tab-content { display: none; }
         .tab-content.active { display: block; animation: fadeIn 0.3s; }
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
@@ -91,15 +105,13 @@
         </div>
     </div>
 
-    <!-- PDF TEMPLATE (Hidden) -->
+    <!-- PDF TEMPLATE -->
     <div id="pdf-template-container">
         <div id="pdf-content" style="padding: 20px 40px; background: white; font-family: sans-serif; max-width: 800px; margin: 0 auto; border: none;">
-            
             <div style="text-align: center; border-bottom: 4px solid #4f46e5; padding-bottom: 15px; margin-bottom: 20px;">
                 <h1 style="color: #1e293b; font-size: 28px; font-weight: bold; margin: 0; line-height: 1.2;">LAPORAN MISI AKHIR</h1>
                 <p style="color: #64748b; font-size: 14px; margin-top: 5px;">Akademi Koding Nusantara</p>
             </div>
-
             <table style="width: 100%; border-collapse: collapse; margin-bottom: 25px;">
                 <tr>
                     <td style="width: 60%; vertical-align: top;">
@@ -116,7 +128,6 @@
                     </td>
                 </tr>
             </table>
-
             <h3 style="font-size: 14px; font-weight: bold; border-bottom: 1px solid #cbd5e1; padding-bottom: 8px; margin-bottom: 15px; color: #334155;">DETAIL JAWABAN MISI (1-10)</h3>
             <table style="width: 100%; border-collapse: collapse; font-size: 12px; margin-bottom: 25px;" id="pdf-table-body">
                 <tr style="background: #f1f5f9; text-align: left;">
@@ -125,12 +136,9 @@
                     <th style="padding: 8px; border-bottom: 2px solid #e2e8f0;">Jawaban</th>
                     <th style="padding: 8px; border-bottom: 2px solid #e2e8f0;">Status</th>
                 </tr>
-                <!-- Rows akan diisi via JS -->
             </table>
-
             <h3 style="font-size: 14px; font-weight: bold; border-bottom: 1px solid #cbd5e1; padding-bottom: 8px; margin-bottom: 15px; color: #334155;">KODE PROJEK AKHIR</h3>
             <div style="background: #1e293b; color: #a5f3fc; padding: 15px; border-radius: 8px; font-family: monospace; font-size: 11px; white-space: pre-wrap; line-height: 1.5; min-height: 100px;" id="pdf-code-val"></div>
-
             <div style="margin-top: 40px; text-align: right;">
                 <p style="font-size: 12px; font-weight: bold; margin-top: 5px;">Server Akademi Koding</p>
                 <p style="font-size: 10px; color: #94a3b8;" id="pdf-date-val">Tanggal: -</p>
@@ -155,7 +163,6 @@
                     </label>
                 </div>
             </div>
-
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4 bg-slate-50 p-4 rounded-xl border border-slate-200">
                 <div>
                     <label class="text-xs font-bold text-slate-400 uppercase">Nama Agen</label>
@@ -173,7 +180,7 @@
             <!-- TAB SOAL -->
             <div id="tab-soal" class="w-full lg:w-5/12 space-y-6 tab-content active">
                 
-                <!-- SOAL 1-3: VARIABEL & MATEMATIKA -->
+                <!-- SOAL 1-3: VARIABEL -->
                 <div class="space-y-6">
                     <div class="flex items-center gap-2 mb-2"><span class="bg-blue-100 text-blue-700 px-2 py-1 rounded text-xs font-bold">BAGIAN 1: VARIABEL</span></div>
                     
@@ -181,18 +188,33 @@
                     <div class="bg-white p-5 rounded-xl shadow-sm border-l-4 border-blue-500 task-card">
                         <div class="flex justify-between mb-2"><h3 class="font-bold text-slate-800">Misi 1: Uang Saku</h3><span class="text-xs font-bold text-slate-400">8 Poin</span></div>
                         <div class="bg-slate-50 p-2 text-xs font-mono mb-2">Uang = 50000; Kurang 15000; Tambah 20000;</div>
-                        <div class="flex gap-2"><input type="number" id="ans-1" class="border p-1 w-full rounded font-bold" placeholder="?"><button onclick="checkAnswer(1, '55000')" id="btn-1" class="bg-blue-500 text-white px-3 rounded text-xs font-bold">Cek</button></div><p id="feed-1" class="text-xs font-bold mt-1"></p>
+                        <div class="flex gap-2"><input type="number" id="ans-1" class="border p-1 w-full rounded font-bold" placeholder="?"><button onclick="checkAnswer(1, '55000')" id="btn-1" class="bg-blue-500 text-white px-3 rounded text-xs font-bold">Cek</button></div>
+                        <p id="feed-1" class="text-xs font-bold mt-1"></p>
+                        <span class="tutor-btn" onclick="toggleTutor('tut-1')">💡 Lihat Tutor</span>
+                        <div id="tut-1" class="tutor-box">
+                            <strong>Cara:</strong><br>
+                            1. Pakai blok `Set Variable`.<br>
+                            2. Pakai blok `Matematika` untuk tambah/kurang.<br>
+                            3. Cetak hasil akhir.
+                        </div>
                     </div>
 
                     <!-- Misi 2 -->
                     <div class="bg-white p-5 rounded-xl shadow-sm border-l-4 border-blue-500 task-card">
                         <div class="flex justify-between mb-2"><h3 class="font-bold text-slate-800">Misi 2: Hitung Umur</h3><span class="text-xs font-bold text-slate-400">8 Poin</span></div>
                         <div class="bg-slate-50 p-2 text-xs font-mono mb-2">TahunLahir = 2010; TahunSekarang = 2025; Umur = ?</div>
-                        <div class="flex gap-2"><input type="number" id="ans-2" class="border p-1 w-full rounded font-bold" placeholder="?"><button onclick="checkAnswer(2, '15')" id="btn-2" class="bg-blue-500 text-white px-3 rounded text-xs font-bold">Cek</button></div><p id="feed-2" class="text-xs font-bold mt-1"></p>
+                        <div class="flex gap-2"><input type="number" id="ans-2" class="border p-1 w-full rounded font-bold" placeholder="?"><button onclick="checkAnswer(2, '15')" id="btn-2" class="bg-blue-500 text-white px-3 rounded text-xs font-bold">Cek</button></div>
+                        <p id="feed-2" class="text-xs font-bold mt-1"></p>
+                        <span class="tutor-btn" onclick="toggleTutor('tut-2')">💡 Lihat Tutor</span>
+                        <div id="tut-2" class="tutor-box">
+                            <strong>Rumus:</strong><br>
+                            Umur = TahunSekarang - TahunLahir.<br>
+                            Gunakan blok pengurangan (-).
+                        </div>
                     </div>
                 </div>
 
-                <!-- SOAL 3-5: LOGIKA IF-ELSE -->
+                <!-- SOAL 3-5: LOGIKA -->
                 <div class="space-y-6">
                     <div class="flex items-center gap-2 mb-2 mt-6"><span class="bg-purple-100 text-purple-700 px-2 py-1 rounded text-xs font-bold">BAGIAN 2: LOGIKA</span></div>
 
@@ -200,21 +222,40 @@
                     <div class="bg-white p-5 rounded-xl shadow-sm border-l-4 border-purple-500 task-card">
                         <div class="flex justify-between mb-2"><h3 class="font-bold text-slate-800">Misi 3: Tiket Masuk</h3><span class="text-xs font-bold text-slate-400">8 Poin</span></div>
                         <div class="bg-slate-50 p-2 text-xs font-mono mb-2">Tinggi = 145; Syarat >= 150? (YA/TIDAK)</div>
-                        <div class="flex gap-2"><select id="ans-3" class="border p-1 w-full rounded text-sm"><option>YA</option><option>TIDAK</option></select><button onclick="checkAnswer(3, 'TIDAK')" id="btn-3" class="bg-purple-500 text-white px-3 rounded text-xs font-bold">Cek</button></div><p id="feed-3" class="text-xs font-bold mt-1"></p>
+                        <div class="flex gap-2"><select id="ans-3" class="border p-1 w-full rounded text-sm"><option>YA</option><option>TIDAK</option></select><button onclick="checkAnswer(3, 'TIDAK')" id="btn-3" class="bg-purple-500 text-white px-3 rounded text-xs font-bold">Cek</button></div>
+                        <p id="feed-3" class="text-xs font-bold mt-1"></p>
+                        <span class="tutor-btn" onclick="toggleTutor('tut-3')">💡 Lihat Tutor</span>
+                        <div id="tut-3" class="tutor-box">
+                            Gunakan blok `If` (Jika).<br>
+                            Bandingkan Variabel Tinggi dengan angka 150.
+                        </div>
                     </div>
 
                     <!-- Misi 4 -->
                     <div class="bg-white p-5 rounded-xl shadow-sm border-l-4 border-purple-500 task-card">
                         <div class="flex justify-between mb-2"><h3 class="font-bold text-slate-800">Misi 4: Nilai Ujian</h3><span class="text-xs font-bold text-slate-400">8 Poin</span></div>
                         <div class="bg-slate-50 p-2 text-xs font-mono mb-2">Nilai = 75; Jika > 80 "A", Jika tidak "B". Output?</div>
-                        <div class="flex gap-2"><input type="text" id="ans-4" class="border p-1 w-full rounded font-bold" placeholder="?"><button onclick="checkAnswer(4, 'B')" id="btn-4" class="bg-purple-500 text-white px-3 rounded text-xs font-bold">Cek</button></div><p id="feed-4" class="text-xs font-bold mt-1"></p>
+                        <div class="flex gap-2"><input type="text" id="ans-4" class="border p-1 w-full rounded font-bold" placeholder="?"><button onclick="checkAnswer(4, 'B')" id="btn-4" class="bg-purple-500 text-white px-3 rounded text-xs font-bold">Cek</button></div>
+                        <p id="feed-4" class="text-xs font-bold mt-1"></p>
+                        <span class="tutor-btn" onclick="toggleTutor('tut-4')">💡 Lihat Tutor</span>
+                        <div id="tut-4" class="tutor-box">
+                            Cek apakah 75 lebih besar dari 80?<br>
+                            Jika SALAH, maka masuk ke bagian `Else` (B).
+                        </div>
                     </div>
 
                     <!-- Misi 5 -->
                     <div class="bg-white p-5 rounded-xl shadow-sm border-l-4 border-purple-500 task-card">
                         <div class="flex justify-between mb-2"><h3 class="font-bold text-slate-800">Misi 5: Lampu Merah</h3><span class="text-xs font-bold text-slate-400">8 Poin</span></div>
                         <div class="bg-slate-50 p-2 text-xs font-mono mb-2">Warna = "Hijau"; Jika "Merah" STOP, Lainnya JALAN.</div>
-                        <div class="flex gap-2"><input type="text" id="ans-5" class="border p-1 w-full rounded font-bold" placeholder="?"><button onclick="checkAnswer(5, 'JALAN')" id="btn-5" class="bg-purple-500 text-white px-3 rounded text-xs font-bold">Cek</button></div><p id="feed-5" class="text-xs font-bold mt-1"></p>
+                        <div class="flex gap-2"><input type="text" id="ans-5" class="border p-1 w-full rounded font-bold" placeholder="?"><button onclick="checkAnswer(5, 'JALAN')" id="btn-5" class="bg-purple-500 text-white px-3 rounded text-xs font-bold">Cek</button></div>
+                        <p id="feed-5" class="text-xs font-bold mt-1"></p>
+                        <span class="tutor-btn" onclick="toggleTutor('tut-5')">💡 Lihat Tutor</span>
+                        <div id="tut-5" class="tutor-box">
+                            Variabel berisi "Hijau".<br>
+                            Syarat IF adalah "Merah".<br>
+                            Karena beda, maka masuk ke Else (JALAN).
+                        </div>
                     </div>
                 </div>
 
@@ -226,21 +267,39 @@
                     <div class="bg-white p-5 rounded-xl shadow-sm border-l-4 border-green-500 task-card">
                         <div class="flex justify-between mb-2"><h3 class="font-bold text-slate-800">Misi 6: Lari Pagi</h3><span class="text-xs font-bold text-slate-400">8 Poin</span></div>
                         <div class="bg-slate-50 p-2 text-xs font-mono mb-2">Ulangi 5 kali: Cetak "Lari". Jumlah kata "Lari"?</div>
-                        <div class="flex gap-2"><input type="number" id="ans-6" class="border p-1 w-full rounded font-bold" placeholder="?"><button onclick="checkAnswer(6, '5')" id="btn-6" class="bg-green-500 text-white px-3 rounded text-xs font-bold">Cek</button></div><p id="feed-6" class="text-xs font-bold mt-1"></p>
+                        <div class="flex gap-2"><input type="number" id="ans-6" class="border p-1 w-full rounded font-bold" placeholder="?"><button onclick="checkAnswer(6, '5')" id="btn-6" class="bg-green-500 text-white px-3 rounded text-xs font-bold">Cek</button></div>
+                        <p id="feed-6" class="text-xs font-bold mt-1"></p>
+                        <span class="tutor-btn" onclick="toggleTutor('tut-6')">💡 Lihat Tutor</span>
+                        <div id="tut-6" class="tutor-box">
+                            Blok `Repeat` akan menjalankan perintah di dalamnya sebanyak angka yang ditentukan (5 kali).
+                        </div>
                     </div>
 
                     <!-- Misi 7 -->
                     <div class="bg-white p-5 rounded-xl shadow-sm border-l-4 border-green-500 task-card">
                         <div class="flex justify-between mb-2"><h3 class="font-bold text-slate-800">Misi 7: Pola Angka</h3><span class="text-xs font-bold text-slate-400">8 Poin</span></div>
                         <div class="bg-slate-50 p-2 text-xs font-mono mb-2">X = 0; Ulangi 3 kali: X = X + 2. Nilai akhir X?</div>
-                        <div class="flex gap-2"><input type="number" id="ans-7" class="border p-1 w-full rounded font-bold" placeholder="?"><button onclick="checkAnswer(7, '6')" id="btn-7" class="bg-green-500 text-white px-3 rounded text-xs font-bold">Cek</button></div><p id="feed-7" class="text-xs font-bold mt-1"></p>
+                        <div class="flex gap-2"><input type="number" id="ans-7" class="border p-1 w-full rounded font-bold" placeholder="?"><button onclick="checkAnswer(7, '6')" id="btn-7" class="bg-green-500 text-white px-3 rounded text-xs font-bold">Cek</button></div>
+                        <p id="feed-7" class="text-xs font-bold mt-1"></p>
+                        <span class="tutor-btn" onclick="toggleTutor('tut-7')">💡 Lihat Tutor</span>
+                        <div id="tut-7" class="tutor-box">
+                            Loop 1: X = 0 + 2 = 2<br>
+                            Loop 2: X = 2 + 2 = 4<br>
+                            Loop 3: X = 4 + 2 = 6
+                        </div>
                     </div>
 
                     <!-- Misi 8 -->
                     <div class="bg-white p-5 rounded-xl shadow-sm border-l-4 border-green-500 task-card">
                         <div class="flex justify-between mb-2"><h3 class="font-bold text-slate-800">Misi 8: Mundur</h3><span class="text-xs font-bold text-slate-400">8 Poin</span></div>
                         <div class="bg-slate-50 p-2 text-xs font-mono mb-2">Hitung mundur 3 ke 1. Angka terakhir dicetak?</div>
-                        <div class="flex gap-2"><input type="number" id="ans-8" class="border p-1 w-full rounded font-bold" placeholder="?"><button onclick="checkAnswer(8, '1')" id="btn-8" class="bg-green-500 text-white px-3 rounded text-xs font-bold">Cek</button></div><p id="feed-8" class="text-xs font-bold mt-1"></p>
+                        <div class="flex gap-2"><input type="number" id="ans-8" class="border p-1 w-full rounded font-bold" placeholder="?"><button onclick="checkAnswer(8, '1')" id="btn-8" class="bg-green-500 text-white px-3 rounded text-xs font-bold">Cek</button></div>
+                        <p id="feed-8" class="text-xs font-bold mt-1"></p>
+                        <span class="tutor-btn" onclick="toggleTutor('tut-8')">💡 Lihat Tutor</span>
+                        <div id="tut-8" class="tutor-box">
+                            Loop berjalan: 3, 2, 1.<br>
+                            Angka terakhir adalah 1.
+                        </div>
                     </div>
                 </div>
 
@@ -252,14 +311,27 @@
                     <div class="bg-white p-5 rounded-xl shadow-sm border-l-4 border-orange-500 task-card">
                         <div class="flex justify-between mb-2"><h3 class="font-bold text-slate-800">Misi 9: Ganjil Genap</h3><span class="text-xs font-bold text-slate-400">8 Poin</span></div>
                         <div class="bg-slate-50 p-2 text-xs font-mono mb-2">Angka = 7; Jika (Angka % 2 == 0) "GENAP", Else "GANJIL".</div>
-                        <div class="flex gap-2"><input type="text" id="ans-9" class="border p-1 w-full rounded font-bold" placeholder="?"><button onclick="checkAnswer(9, 'GANJIL')" id="btn-9" class="bg-orange-500 text-white px-3 rounded text-xs font-bold">Cek</button></div><p id="feed-9" class="text-xs font-bold mt-1"></p>
+                        <div class="flex gap-2"><input type="text" id="ans-9" class="border p-1 w-full rounded font-bold" placeholder="?"><button onclick="checkAnswer(9, 'GANJIL')" id="btn-9" class="bg-orange-500 text-white px-3 rounded text-xs font-bold">Cek</button></div>
+                        <p id="feed-9" class="text-xs font-bold mt-1"></p>
+                        <span class="tutor-btn" onclick="toggleTutor('tut-9')">💡 Lihat Tutor</span>
+                        <div id="tut-9" class="tutor-box">
+                            7 dibagi 2 sisanya 1 (bukan 0).<br>
+                            Jadi masuk ke Else (GANJIL).
+                        </div>
                     </div>
 
                     <!-- Misi 10 -->
                     <div class="bg-white p-5 rounded-xl shadow-sm border-l-4 border-orange-500 task-card">
                         <div class="flex justify-between mb-2"><h3 class="font-bold text-slate-800">Misi 10: Jebakan Logika</h3><span class="text-xs font-bold text-slate-400">8 Poin</span></div>
                         <div class="bg-slate-50 p-2 text-xs font-mono mb-2">A = 10; Jika A > 5 tambah 5; Lalu tambah 2. Hasil?</div>
-                        <div class="flex gap-2"><input type="number" id="ans-10" class="border p-1 w-full rounded font-bold" placeholder="?"><button onclick="checkAnswer(10, '17')" id="btn-10" class="bg-orange-500 text-white px-3 rounded text-xs font-bold">Cek</button></div><p id="feed-10" class="text-xs font-bold mt-1"></p>
+                        <div class="flex gap-2"><input type="number" id="ans-10" class="border p-1 w-full rounded font-bold" placeholder="?"><button onclick="checkAnswer(10, '17')" id="btn-10" class="bg-orange-500 text-white px-3 rounded text-xs font-bold">Cek</button></div>
+                        <p id="feed-10" class="text-xs font-bold mt-1"></p>
+                        <span class="tutor-btn" onclick="toggleTutor('tut-10')">💡 Lihat Tutor</span>
+                        <div id="tut-10" class="tutor-box">
+                            Awal = 10.<br>
+                            Karena > 5, tambah 5 jadi 15.<br>
+                            Lalu (di luar IF) tambah 2 jadi 17.
+                        </div>
                     </div>
                 </div>
 
@@ -381,6 +453,11 @@
             if(tab === 'lab') setTimeout(() => Blockly.svgResize(demoWorkspace), 100);
         }
 
+        function toggleTutor(id) {
+            const el = document.getElementById(id);
+            el.style.display = el.style.display === 'block' ? 'none' : 'block';
+        }
+
         function checkAnswer(id, correct) {
             if (answered[id] !== undefined) return;
             const val = document.getElementById(`ans-${id}`).value.trim().toUpperCase();
@@ -401,13 +478,11 @@
         }
 
         function updateScore() {
-            // Hitung skor soal (10 soal x 8 poin = 80)
             let soalScore = 0;
             for(let i=1; i<=10; i++) {
                 if(answered[i]) soalScore += 8;
             }
 
-            // Hitung skor projek (20 poin)
             const p1 = document.getElementById('check-var').checked;
             const p2 = document.getElementById('check-if').checked;
             const p3 = document.getElementById('check-calc').checked;
@@ -450,48 +525,36 @@
 
             const btn = document.getElementById('btn-download'); btn.innerHTML = "⏳ Memproses..."; btn.disabled = true;
 
-            // INJECT DATA
             document.getElementById('pdf-name-val').innerText = document.getElementById('student-name').value || "Tanpa Nama";
             document.getElementById('pdf-class-val').innerText = document.getElementById('student-class').value || "-";
             document.getElementById('pdf-score-val').innerText = document.getElementById('total-score').innerText;
             document.getElementById('pdf-date-val').innerText = "Tanggal: " + new Date().toLocaleDateString('id-ID');
 
             const tableBody = document.getElementById('pdf-table-body');
-            // Hapus baris lama kecuali header
             while(tableBody.rows.length > 1) { tableBody.deleteRow(1); }
 
-            // Isi 10 Soal
             for(let i=1; i<=10; i++) {
                 const row = tableBody.insertRow();
                 const val = document.getElementById(`ans-${i}`).value || "(Kosong)";
                 const stat = answered[i] === true ? "BENAR" : (answered[i] === false ? "SALAH" : "-");
-                
                 row.insertCell(0).innerText = i;
                 row.insertCell(1).innerText = MISI_NAMES[i-1];
                 row.insertCell(2).innerText = val;
-                
                 const cellStat = row.insertCell(3);
                 cellStat.innerText = stat;
                 cellStat.style.color = stat === "BENAR" ? "green" : "red";
                 cellStat.style.fontWeight = "bold";
             }
 
-            // Isi Projek Akhir
             const rowProj = tableBody.insertRow();
-            rowProj.insertCell(0).innerText = "11";
-            rowProj.insertCell(1).innerText = "PROJEK AKHIR";
-            rowProj.insertCell(2).innerText = "Selesai";
-            const cellStatProj = rowProj.insertCell(3);
-            cellStatProj.innerText = "BENAR";
-            cellStatProj.style.color = "green"; 
-            cellStatProj.style.fontWeight = "bold";
+            rowProj.insertCell(0).innerText = "11"; rowProj.insertCell(1).innerText = "PROJEK AKHIR"; rowProj.insertCell(2).innerText = "Selesai";
+            const cellStatProj = rowProj.insertCell(3); cellStatProj.innerText = "BENAR"; cellStatProj.style.color = "green"; cellStatProj.style.fontWeight = "bold";
 
             try {
                 const code = Blockly.JavaScript.workspaceToCode(demoWorkspace);
                 document.getElementById('pdf-code-val').innerText = code || "// Tidak ada kode";
             } catch(e) { document.getElementById('pdf-code-val').innerText = "// Error"; }
 
-            // OVERLAY & PRINT
             const overlay = document.createElement('div');
             Object.assign(overlay.style, {position:'fixed', top:0, left:0, width:'100%', height:'100%', zIndex:99999, background:'white', display:'flex', justifyContent:'center', alignItems:'flex-start', overflowY:'auto', paddingTop:'0'});
             
@@ -515,7 +578,7 @@
             const data = {
                 name: document.getElementById('student-name').value,
                 class: document.getElementById('student-class').value,
-                score: document.getElementById('total-score').innerText, // Simpan skor final
+                score: document.getElementById('total-score').innerText,
                 xml: Blockly.Xml.domToText(Blockly.Xml.workspaceToDom(demoWorkspace))
             };
             const blob = new Blob([JSON.stringify(data)], {type:'application/json'});
